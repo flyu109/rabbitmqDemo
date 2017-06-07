@@ -13,11 +13,11 @@ import java.io.IOException;
 @Component
 public class StudentMQ {
 
-    @MqAnnotation(routingKey = "com.mqdemo.student",eventMessageClass="com.mqDemo.rabbitmq.demo.Student")
-    public String sendStudent() throws IOException {
+    @MqAnnotation(routingKey = "com.mqdemo.student")
+    public Object sendStudent() throws IOException {
         Student student = new Student();
         student.setName("zbp109");
         student.setAge(30);
-        return JSON.toJSONString(student);
+        return student;
     }
 }

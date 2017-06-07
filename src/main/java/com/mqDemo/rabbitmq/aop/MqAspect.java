@@ -39,10 +39,9 @@ public class MqAspect {
         System.out.println("发送的消息："+retVal.toString());
         MqAnnotation mqAnnotation =getMqAnnotiaon(pjp);
         EventMessage message = new EventMessage();
-        message.setClazz(Class.forName(mqAnnotation.eventMessageClass()));
-        message.setAttachment(retVal.toString());
+        message.setBody(retVal);
+        message.setClazz(retVal.getClass());
         rabbitTemplate.convertAndSend(mqAnnotation.routingKey(),message,correlationId);
-
     }
     public  static MqAnnotation getMqAnnotiaon(JoinPoint joinPoint)  throws Exception {
         MqAnnotation mqAnnotation= null;

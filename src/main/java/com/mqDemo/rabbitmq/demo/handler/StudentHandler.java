@@ -8,11 +8,12 @@ import com.mqDemo.rabbitmq.handler.IHandler;
  */
 public class StudentHandler implements IHandler<Student>{
 
-    public void handler(Student attachment) {
-        System.out.println(attachment.toString());
+    public void handler(Student object) {
+        System.out.println(object.toString());
     }
 
     public void callBack(Student attachment) {
 
     }
+
 }

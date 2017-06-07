@@ -2,6 +2,7 @@
 package com.mqDemo.rabbitmq.event;
 
 import java.io.Serializable;
+import java.util.Map;
 
 /**
  * 
@@ -16,28 +17,34 @@ import java.io.Serializable;
 public class EventMessage implements Serializable{
 
     private static final long serialVersionUID = 6742149452746213290L;
-    private Class<?> clazz;
-    private String attachment;
 
+    private Map<String ,Object> header;
+
+    private Object body;
+
+    private Class<?> clazz;
+
+    public Map<String, Object> getHeader() {
+        return header;
+    }
+
+    public void setHeader(Map<String, Object> header) {
+        this.header = header;
+    }
+
+    public Object getBody() {
+        return body;
+    }
+
+    public void setBody(Object body) {
+        this.body = body;
+    }
 
     public Class<?> getClazz() {
         return clazz;
     }
+
     public void setClazz(Class<?> clazz) {
         this.clazz = clazz;
-    }
-    public String getAttachment() {
-        return attachment;
-    }
-    public void setAttachment(String attachment) {
-        this.attachment = attachment;
-    }
-
-    @Override
-    public String toString() {
-        return "EventMessage{" +
-                "clazz=" + clazz +
-                ", attachment='" + attachment + '\'' +
-                '}';
     }
 }

@@ -11,5 +11,4 @@ import java.lang.annotation.*;
 @Documented
 public @interface MqAnnotation {
    String routingKey() default "";
-   String eventMessageClass() default "";
 }

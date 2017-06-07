@@ -1,5 +1,6 @@
 package com.mqDemo.rabbitmq.demo.consumer;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.mqDemo.rabbitmq.aop.MqAspect;
 import com.mqDemo.rabbitmq.event.EventMessage;
@@ -17,14 +18,12 @@ public class StudentMqListenter1 implements ChannelAwareMessageListener {
     private static Logger logger = LoggerFactory.getLogger(StudentMqListenter1.class);
     private IHandler iHandler;
     public void onMessage(Message message, Channel channel) throws Exception {
-
-        channel.basicAck(message.getMessageProperties().getDeliveryTag(), false); //确认消息成功消费
-
         System.out.println("第二次监听");
+        channel.basicAck(message.getMessageProperties().getDeliveryTag(), false); //确认消息成功消费
         byte[] body = message.getBody();
         String source = new String(body);
         EventMessage em = JSONObject.parseObject(source, EventMessage.class);
-        Object obj = JSONObject.parseObject(em.getAttachment(), em.getClazz());
+        Object obj = JSONObject.parseObject(JSON.toJSONString(em.getBody()),em.getClazz());
         try {
             iHandler.handler(obj);
         } catch (Exception e) {
