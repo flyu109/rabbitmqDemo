@@ -41,7 +41,7 @@ public class MqAspect {
         EventMessage message = new EventMessage();
         message.setBody(retVal);
         message.setClazz(retVal.getClass());
-        rabbitTemplate.convertAndSend(mqAnnotation.routingKey(),message,correlationId);
+        rabbitTemplate.convertAndSend(mqAnnotation.exchangeName(),mqAnnotation.routingKey(),message,correlationId);
     }
     public  static MqAnnotation getMqAnnotiaon(JoinPoint joinPoint)  throws Exception {
         MqAnnotation mqAnnotation= null;

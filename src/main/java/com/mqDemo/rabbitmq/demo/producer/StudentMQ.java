@@ -13,7 +13,7 @@ import java.io.IOException;
 @Component
 public class StudentMQ {
 
-    @MqAnnotation(routingKey = "com.mqdemo.student")
+    @MqAnnotation(exchangeName = "exchangeTest",routingKey = "com.mqdemo.student")
     public Object sendStudent() throws IOException {
         Student student = new Student();
         student.setName("zbp109");

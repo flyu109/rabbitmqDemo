@@ -16,7 +16,7 @@
 
     <!--定义rabbit template用于数据的接收和发送 -->
     <rabbit:template id="rabbitTemplate"  connection-factory="connectionFactory"
-                     exchange="exchangeTest" message-converter="jsonMessageConverter"/>
+                     message-converter="jsonMessageConverter" />
 
     <!--通过指定下面的admin信息，当前producer中的exchange和queue会在rabbitmq服务器上自动生成 -->
     <rabbit:admin connection-factory="connectionFactory" />

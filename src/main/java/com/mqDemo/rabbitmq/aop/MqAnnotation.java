@@ -10,5 +10,6 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface MqAnnotation {
+   String exchangeName() default "";
    String routingKey() default "";
 }
